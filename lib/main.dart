@@ -5,6 +5,7 @@ import 'package:flutter_workspace/basics/for_screen.dart';
 import 'package:flutter_workspace/basics/if_screen.dart';
 import 'package:flutter_workspace/basics/while_screen.dart';
 import 'package:flutter_workspace/screens/main_screen.dart';
+import 'package:flutter_workspace/screens/post_screen.dart';
 import 'package:go_router/go_router.dart';
 
 import 'basics/mbti_intro_screen.dart';
@@ -94,6 +95,10 @@ final GoRouter _router = GoRouter(
     GoRoute(
         path: "/while",
         builder: (context, state) => const WhileScreen()
+    ),
+    GoRoute(
+        path: "/insta-main",
+        builder: (context, state) => const PostScreen()
     ),
     GoRoute(
       path: '/mbti',

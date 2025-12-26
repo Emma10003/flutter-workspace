@@ -1,10 +1,11 @@
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 
 import '../models/Post.dart';
 
-class Postservice {
+class PostService {
   static String baseUrl = 'http://localhost:9000';
 
   // 이미지 URL 만들기
@@ -21,11 +22,16 @@ class Postservice {
   // pubspec.yaml 로 접속하여 dependencies에 http 관련 모듈 세팅이 존재하는지 확인.
   // 게시물 백엔드에서 어플로 가져오기
   static Future<List<Post>> getPosts() async {
+    debugPrint('API 호출 시작: $baseUrl/api/posts');
+
     var res = await http.get(Uri.parse('$baseUrl/api/posts'));
+    debugPrint('응답 상태코드: ${res.statusCode}');
 
     if(res.statusCode == 200) {
       // 데이터를 가져올 때 영어, 숫자 이외의 글자 깨짐 없도록 세팅
       List jsonList = json.decode(utf8.decode(res.bodyBytes));
+      debugPrint('데이터 개수: ${jsonList.length}');
+      debugPrint('전체 데이터: $jsonList');
       return jsonList.map((j) => Post.fromJson(j)).toList();  // map 매개변수 j에 소괄호 없으면 에러 발생함!
     } else {
       throw Exception('데이터를 불러올 수 없습니다.');

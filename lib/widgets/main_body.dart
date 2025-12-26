@@ -49,6 +49,14 @@ class MainBody extends StatelessWidget {
           ),
           SizedBox(height: 20),
           ElevatedButton(
+            onPressed: () => context.go("/insta-main"),
+            child: const Text(
+                "Instagram 이동",
+                style: TextStyle(fontSize: 18, color: Colors.green)
+            ),
+          ),
+          SizedBox(height: 20),
+          ElevatedButton(
             onPressed: () => context.go("/mbti"),
             child: const Text(
                 "MBTI 검사하기",
